@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load tags %}
+
+{% block content %}
+    <table>
+        {% for item in files %}
+            <tr>
+                <td>
+                    {{ item.file.name }}
+                </td>
+                <td>
+                    {{ item.uuid }}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

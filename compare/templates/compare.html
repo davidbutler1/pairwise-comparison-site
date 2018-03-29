@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load tags %}
+
+{% block header %}
+    <script>
+        $(document).ready(function(){
+            var form = document.getElementById("form");
+
+            $('#item_1_id').click(function() {
+                document.getElementById("chosen").value = 1;
+                form.submit();
+            });
+
+            $('#item_2_id').click(function() { 
+                document.getElementById("chosen").value = 2;
+                form.submit();
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="item_container" id="item_1_id" >
+        {% if item_1.file.url|is_video %}
+            <video class="item_compare" src="{{ item_1.file.url }}" autoplay loop controls></video>
+        {% else %}
+            <img class="item_compare" src="{{ item_1.file.url }}"/>
+        {% endif %}
+    </div>
+
+    <div class="item_container"  id="item_2_id" >
+        {% if item_2.file.url|is_video %}
+            <video class="item_compare" src="{{ item_2.file.url }}" autoplay loop controls></video>
+        {% else %}
+            <img class="item_compare" src="{{ item_2.file.url }}" />
+        {% endif %}
+    </div>
+
+    <form id="form" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="item_1_uuid" value="{{ item_1.uuid }}">
+        <input type="hidden" name="item_2_uuid" value="{{ item_2.uuid }}">
+        <input type="hidden" name="chosen" value="" id="chosen">
+    </form>
+{% endblock %}

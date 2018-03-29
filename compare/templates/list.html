@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load tags %}
+
+{% block content %}
+    {% for i in items %}
+        {% if i.file.name|is_video %}
+            <video src="{{ i.file.name }}" style="max-width: 50%; max-height:400px" autoplay loop controls></video>
+        {% else %}
+            <img src="{{ i.file.name }}" style="max-width: 50%; max-height:400px"/>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

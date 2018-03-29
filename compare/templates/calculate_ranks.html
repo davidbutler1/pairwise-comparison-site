@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load tags %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+    {% if no_items %}
+        No items to rank
+    {% else %}
+        Success
+    {% endif %}
+{% endblock %}

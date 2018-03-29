@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load tags %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+    {% for t in tags %}
+        <a href="{% url 'searchtags' %}?t={{ t.name }}">{{ t.name }}</a>
+    {% endfor %}
+
+    {% if taggeditems %}
+        <div>
+            {% for i in taggeditems %}
+                {% if i.item.file.url|is_video %}
+                    <video class="searchtags_item" src="{{ i.item.file.url }}" autoplay loop></video>
+                {% else %}
+                    <img class="searchtags_item" src="{{ i.item.file.url }}"/>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

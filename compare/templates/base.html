@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <header>
+            <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+            <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+            {% block header %}
+            {% endblock %}
+    </header>
+    <body>
+        <div class="content" >
+            <div>
+                <a href="{% url 'index' %}">Index</a>
+                <a href="{% url 'list' %}">List</a>
+                <a href="{% url 'compare' %}">Compare</a>
+                <a href="{% url 'files' %}">Files</a>
+                <a href="{% url 'search_tags' %}">Search Tags</a>
+                <a href="{% url 'tag' %}">Tags</a> 
+                <a href="{% url 'upload' %}">Upload</a>
+                <a href="{% url 'calculate_ranks' %}">Calculate Ranks</a>
+            </div>
+
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

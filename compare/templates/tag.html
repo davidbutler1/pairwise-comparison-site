@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load tags %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+    {% for t in tags %}
+        <a href="{% url 'tag' %}?t={{ t.name }}">{{ t.name }}</a>
+    {% endfor %}
+
+    {% if t %}
+        <form id="form" action="" method="post">
+            <input type="submit" name="asd">
+            <input type=hidden name="tag" value="{{ t.uuid }}">
+            {% csrf_token %}
+
+            {% for i in items %}
+                <div style="float: left">
+                    <input type='checkbox' class="tag_checkbox" id="{{ i.uuid }}" name="{{ i.uuid }}"/>
+                    <label for="{{ i.uuid }}">
+                        <div>
+                            {% if i.file.url|is_video %}
+                                <video class="tag_item" src="{{ i.file.url }}" autoplay loop></video>
+                            {% else %}
+                                <img class="tag_item" src="{{ i.file.url }}"/>
+                            {% endif %}
+                        </div>
+                    </label>
+                </div>
+            {% endfor %}
+        </form>
+    {% endif %}
+{% endblock %}
